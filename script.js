@@ -14,7 +14,7 @@ let income = ' Фриланс ';
 
 let mission = 2000000;
 
-let Question4 = prompt('Какие обязательные ежемесячные расходы у вас есть?')
+let Question4 = prompt('Какие обязательные ежемесячные расходы у вас есть?');
 let tallage  = Question4;
 
 let Question5 = prompt('Во сколько это обойдется?');
