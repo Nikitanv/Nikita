@@ -44,10 +44,10 @@ showTypeOf(deposit);
 
 
 let getStatusIncome = function(){
-if (budgetDay >800 ) return('Высокий уровень дохода');
-else if (budgetDay >=300 <= 800) return('Средний уровень дохода');
-else if (budgetDay >=0 < 300 ) return('Низкий уровень дохода');
-else if (budgetDay<0 ) return('Что-то пошло не так');
+if (budgetDay >=800 ) return('Высокий уровень дохода');
+else if (budgetDay >=300 ) return('Средний уровень дохода');
+else if (budgetDay  < 300 ) return('Низкий уровень дохода');
+else if (budgetDay<=0 ) return('Что-то пошло не так');
 };
 
 getStatusIncome();
