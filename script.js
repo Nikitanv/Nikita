@@ -11,7 +11,7 @@ let start = function(){
  
  };
 start();
-
+ 
 
  let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
  let deposit = confirm('Есть ли у вас депозит в банке?');
@@ -36,6 +36,9 @@ let expenses1;
      expenses2 = prompt('Какие обязательные ежемесячные расходы у вас есть?', 'Долги');
  }
  sum +=+prompt('Во сколько это обойдется?', 5000);
+ while(isNaN(sum) || money === '' || money === null){
+    sum =+prompt('Во сколько это обойдется?', 5000);
+ }
      }
  return sum;
  };
