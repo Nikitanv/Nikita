@@ -17,14 +17,17 @@ let getExpensesMonth = function(){
 return allExpenses + allExpenses1;
 };
 
-let cum = getExpensesMonth();
-console.log(cum);
+console.log(getExpensesMonth());
 
-const getAccumulatedMonth = function(){
-return money - cum;
+
+
+let getAccumulatedMonth = function(){
+return money - getExpensesMonth();
 };
 let accumulatedMonth = getAccumulatedMonth();
 console.log(accumulatedMonth);
+
+
 
 let getTargetMonth = function(){
     console.log(mission);
@@ -44,10 +47,10 @@ showTypeOf(deposit);
 
 
 let getStatusIncome = function(){
-if (budgetDay >=800 ) return('Высокий уровень дохода');
-else if (budgetDay >=300 ) return('Средний уровень дохода');
-else if (budgetDay  < 300 ) return('Низкий уровень дохода');
-else if (budgetDay<=0 ) return('Что-то пошло не так');
+if (budgetDay >800 ) return('Высокий уровень дохода');
+else if (budgetDay >=300 <= 800) return('Средний уровень дохода');
+else if (budgetDay >=0 < 300 ) return('Низкий уровень дохода');
+else if (budgetDay<0 ) return('Что-то пошло не так');
 };
 
 getStatusIncome();
