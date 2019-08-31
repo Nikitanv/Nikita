@@ -50,6 +50,7 @@ let expenses1;
 
  let budgetMonth = (money - expensesAmount);
  let budgetDay =  (budgetMonth / 30);
+ if (budgetDay < 0 ) console.log('Что-то пошло не так');
  let tallage1
  
  
@@ -65,8 +66,9 @@ let expenses1;
      return (mission - accumulatedMonth);
  };
  
- if (getTargetMounth() > 0) console.log('Цель будет достигнута');
- else console.log('Цель не будет достигнута');
+ 
+ if (getTargetMonth() < 0) console.log('Цель не будет достигнута');
+ else console.log('Цель будет достигнута');
  
  
  let showTypeOf = function(data) {
