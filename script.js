@@ -62,16 +62,11 @@ let expenses1;
  
  
  let getTargetMonth = function(){
-     console.log(mission);
-     console.log(accumulatedMonth);
      return (mission - accumulatedMonth);
  };
  
- let res = getTargetMonth();
- console.log (res);
- 
- if (res < 0) console.log('Цель не будет достигнута');
- else console.log('Цель будет достигнута');
+ if (getTargetMounth() > 0) console.log('Цель будет достигнута');
+ else console.log('Цель не будет достигнута');
  
  
  let showTypeOf = function(data) {
