@@ -1,4 +1,5 @@
  'use strict ';
+ 
   let money ;
 let start = function(){
  money = prompt('ваш месячный доход?', 15000);
