@@ -13,7 +13,6 @@ let start = function(){
  };
 start();
  
-
  let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую');
  let deposit = confirm('Есть ли у вас депозит в банке?');
  let income = ' Фриланс ';
@@ -21,8 +20,6 @@ start();
  let tallage;
 let expenses1;
  let expenses2;
- 
- 
  
  
 
@@ -63,12 +60,12 @@ let expenses1;
  
  
  let getTargetMonth = function(){
+ if (getTargetMonth() < 0) console.log('Цель будет достигнута');
+ else console.log('Цель не будет достигнута');
+ 
      return (mission - accumulatedMonth);
  };
  
- 
- if (getTargetMonth() < 0) console.log('Цель не будет достигнута');
- else console.log('Цель будет достигнута');
  
  
  let showTypeOf = function(data) {
