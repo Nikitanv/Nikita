@@ -3,17 +3,14 @@
 let money,
     expenses1,
     expenses2,
-    
-      start = function () {
-    do {
-        money = +prompt('ваш месячный доход?', 15000);
-    }
-    while (isNaN(money) || money === '' || money === null);
-};
-start();
-console.log(money);
- 
 
+    start = function () {
+        do {
+            money = +prompt('ваш месячный доход?', 15000);
+        }
+        while (isNaN(money) || money === '' || money === null);
+    };
+start();
 
 let appData = {
     income: {},
@@ -40,28 +37,25 @@ let appData = {
             }
             while (isNaN(expenses2) || expenses2 === '' || expenses2 === null);
         }
-      appData.expenses[expenses1] = expenses2;
+        appData.expenses[expenses1] = expenses2;
     },
-getExpensesMounth:function(){
-for (let key in appData.expenses){
-    appData.ExpensesMonth += +appData.expenses[key];
-}
-},
+    getExpensesMounth: function () {
+        for (let key in appData.expenses) {
+            appData.ExpensesMonth += +appData.expenses[key];
+        }
+    },
     getBudget: function () {
         appData.budgetMonth = appData.budget - appData.ExpensesMonth;
         appData.budgetDay = Math.ceil(appData.budgetMonth / 30);
     },
-
-
-
-
-
     getTargetMonth: function () {
-
-        return appData.mission / appData.budgetMonth;
+        let countMonth = Math.ceil(appData.mission / appData.budgetMonth);
+        if (countMonth > 0) {
+            return ('Цель будет достигнута за ', countMonth);
+        } else {
+            return ('цель не будет достигнута');
+        }
     },
-
-
     getStatusIncome: function () {
         if (appData.budgetDay >= 800) {
             return ('Высокий уровень дохода');
@@ -75,28 +69,13 @@ for (let key in appData.expenses){
     },
 };
 
-
 appData.asking();
 appData.getBudget();
-appData.getTargetMonth();
+console.log(appData.getTargetMonth());
 appData.getExpensesMounth();
-
 console.log(appData.budgetMonth);
-
-
-
-
-
-if (appData.getTargetMonth() > 0) {
-    console.log('Цель будет достигнута за ', Math.ceil(appData.getTargetMonth()));
-} else {
-    console.log('цель не будет достигнута');
-}
-
-
-
 console.log(appData.getStatusIncome());
 console.log('расходы за месяц = ', expenses2);
-for (let key in appData){
-console.log('Наша программа включает в себя данные = ' + key + '-'+ appData[key]);
+for (let key in appData) {
+    console.log('Наша программа включает в себя данные = ' + key + '-' + appData[key]);
 }
