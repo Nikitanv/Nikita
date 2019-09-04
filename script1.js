@@ -3,7 +3,7 @@
 let money,
     expenses1,
     expenses2,
-    budgetMonth,
+    
       start = function () {
     do {
         money = +prompt('ваш месячный доход?', 15000);
@@ -48,8 +48,8 @@ for (let key in appData.expenses){
 }
 },
     getBudget: function () {
-        budgetMonth = appData.budget - appData.ExpensesMonth;
-        appData.budgetDay = Math.ceil(budgetMonth / 30);
+        appData.budgetMonth = appData.budget - appData.ExpensesMonth;
+        appData.budgetDay = Math.ceil(appData.budgetMonth / 30);
     },
 
 
@@ -58,7 +58,7 @@ for (let key in appData.expenses){
 
     getTargetMonth: function () {
 
-        return appData.mission / budgetMonth;
+        return appData.mission / appData.budgetMonth;
     },
 
 
@@ -79,9 +79,9 @@ for (let key in appData.expenses){
 appData.asking();
 appData.getBudget();
 appData.getTargetMonth();
+appData.getExpensesMounth();
 
-
-
+console.log(appData.budgetMonth);
 
 
 
