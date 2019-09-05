@@ -4,6 +4,7 @@ let money,
     expenses1,
     expenses2,
     cashIncome,
+    itemIncome,
     start = function () {
         do {
             money = +prompt('ваш месячный доход?', 15000);
@@ -29,8 +30,9 @@ let appData = {
     asking: function () {
 
         if (confirm('Есть ли у вас дополнительный заработок?')) {
-            let itemIncome = prompt('Какой у вас дополнительны зарабаток ?', 'Куратор');
-            do {
+           
+             itemIncome = prompt('Какой у вас дополнительны зарабаток ?', 'Куратор');
+             do {
                 cashIncome = prompt('Сколько в месяц вы на этом зарабатываете ?', 10000);
             }
             while (isNaN(cashIncome) || cashIncome === '' || cashIncome === null);
@@ -39,7 +41,7 @@ let appData = {
         }
 
         let addExpenses = prompt('Перечислите Возможные Расходы За Зассчитываемый Период Через Запятую');
-        appData.addExpenses = addExpenses.toLowerCase ().split(',');
+        appData.addExpenses = addExpenses.toUpperCase ().split(' , ');
         appData.deposit = confirm('Есть ли у вас депозит в банке?');
       
      for (let i = 0; i < 2; i++) {
