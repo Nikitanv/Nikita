@@ -30,8 +30,10 @@ let appData = {
     asking: function () {
 
         if (confirm('Есть ли у вас дополнительный заработок?')) {
-           
+           do{
              itemIncome = prompt('Какой у вас дополнительны зарабаток ?', 'Куратор');
+           }
+           while(Number(itemIncome) || itemIncome ==='' || itemIncome === null);
              do {
                 cashIncome = prompt('Сколько в месяц вы на этом зарабатываете ?', 10000);
             }
