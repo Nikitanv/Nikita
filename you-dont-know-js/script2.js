@@ -33,6 +33,6 @@ newElem.textContent = 'Глава 8: За пределами ES6” и пост�
 elem[2].appendChild(newElem);
 
  
-col[0].insertBefore(boo[2], null);
+col[0].insertBefore(boo[2], boo[9]);
 col[0].insertBefore(boo[9],null);
 
