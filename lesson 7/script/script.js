@@ -23,8 +23,10 @@ let start = document.getElementById('start'),
     additionalExpenses = document.querySelector('.additional_expenses'),
     periodSelector = document.querySelector('.period-select'),
     expensesItems = document.querySelectorAll('.expenses-items'),
-    incomeItem = document.querySelectorAll('.income-items');
-
+    incomeItem = document.querySelectorAll('.income-items'),
+    data = document.querySelector('.data'),
+    cancel = document.querySelector('#cancel');
+    
 
 let
     expenses1,
@@ -45,12 +47,12 @@ let appData = {
     budgetDay: 0,
     budgetMonth: 0,
     ExpensesMonth: 0,
-
+    incomeMonth: 0,
     start: function () {
         // if (salaryAmount.value === '') {
         //     alert('Ошибка, поле "Месячный доход" должно быть заполнено');
         // }
-        appData.budget = salaryAmount.value;
+        appData.budget = +salaryAmount.value;
 
         appData.getEpenses();
         appData.getIncome();
@@ -59,6 +61,7 @@ let appData = {
         appData.getAddincome();
         appData.getBudget();
         appData.showResult();
+        appData.block();
     },
     showResult: function () {
         budgetMounthValue.value = appData.budgetMonth;
@@ -74,7 +77,13 @@ let appData = {
         });
 
     },
-
+block: function(){
+    data.querySelectorAll('input[type=text]').forEach(function(item){
+        item.disabled = true;
+    });
+start.style.display = 'none';
+cancel.style.display = 'block';
+},
     addExpensesBlock: function () {
 
 
@@ -189,10 +198,10 @@ periodSelector.addEventListener('input', function () {
 
 start.disabled = true;
 
-salaryAmount.addEventListener('input', function(){
-    if(salaryAmount.value.trim() === ''){
-        start.disabled = true; 
-    } else{
+salaryAmount.addEventListener('input', function () {
+    if (salaryAmount.value.trim() === '') {
+        start.disabled = true;
+    } else {
         start.disabled = false;
     }
 });
