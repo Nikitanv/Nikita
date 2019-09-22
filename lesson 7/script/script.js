@@ -50,6 +50,13 @@ let appData = {
     incomeMonth: 0,
     start: function () {
 
+salaryAmount.addEventListener('input', function () {
+    if (salaryAmount.value.trim() === '') {
+        start.disabled = true;
+    } else {
+        start.disabled = false;
+    }
+});
         this.budget = +salaryAmount.value;
 
         this.getEpenses();
@@ -83,24 +90,24 @@ let appData = {
         cancel.style.display = 'block';
         cancel.addEventListener('click', this.reset);
     },
-    reset(){
+    reset() {
         this.income = {};
-    this.addIncome = [];
-    this.expenses = {};
-    this.addExpenses = [];
-    this.deposit = false;
-    this.percentDeposit = 0;
-    this.moneyDeposit = 0;
-    this.period = 3;
-    this.budget = 0;
-    this.budgetDay = 0;
-    this.budgetMonth = 0;
-    this.ExpensesMonth = 0;
-    this.incomeMonth = 0;
-    data.querySelectorAll('input[type=text]').forEach(function (item) {
-        item.disabled = false;
-    });
-     data.querySelectorAll('input[type=text]').forEach(function (item) {
+        this.addIncome = [];
+        this.expenses = {};
+        this.addExpenses = [];
+        this.deposit = false;
+        this.percentDeposit = 0;
+        this.moneyDeposit = 0;
+        this.period = 3;
+        this.budget = 0;
+        this.budgetDay = 0;
+        this.budgetMonth = 0;
+        this.ExpensesMonth = 0;
+        this.incomeMonth = 0;
+        data.querySelectorAll('input[type=text]').forEach(function (item) {
+            item.disabled = false;
+        });
+        data.querySelectorAll('input[type=text]').forEach(function (item) {
             item.value = '';
         });
         start.style.display = 'block';
@@ -143,7 +150,7 @@ let appData = {
             if (incomeTitle !== '' && incomeAmount !== '') {
                 this.income[incomeTitle] = incomeAmount;
             }
-        },this);
+        }, this);
         for (let key in this.income) {
             this.incomeMonth += +this.income[key];
         }
@@ -164,7 +171,7 @@ let appData = {
             if (itemValue !== '') {
                 this.addIncome.push(itemValue);
             }
-        },this);
+        }, this);
 
     },
 
@@ -223,13 +230,6 @@ periodSelector.addEventListener('input', function () {
 
 start.disabled = true;
 
-salaryAmount.addEventListener('input', function () {
-    if (salaryAmount.value.trim() === '') {
-        start.disabled = true;
-    } else {
-        start.disabled = false;
-    }
-});
 
 
 
