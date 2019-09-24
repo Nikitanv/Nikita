@@ -179,11 +179,18 @@ AppData.prototype.getAddincome = function () {
 
 
 
-//AppData.prototype.eventListeners = function(){
+AppData.prototype.eventListeners = function(){
+
+start.addEventListener('click', appData.start.bind(appData));
+expensesPlus.addEventListener('click', appData.addExpensesBlock);
+incomePlus.addEventListener('click', appData.addIncomeBlock);
+
+periodSelector.addEventListener('input', function () {
+    document.querySelector('.period-amount').textContent = periodSelector.value;
+});
 
 
-
-//};
+};
 
 
 
@@ -231,17 +238,10 @@ AppData.prototype.getInfoDeposit = function () {
 
 };
 const appData = new AppData();
-start.addEventListener('click', appData.start.bind(appData));
-expensesPlus.addEventListener('click', appData.addExpensesBlock);
-incomePlus.addEventListener('click', appData.addIncomeBlock);
-
-periodSelector.addEventListener('input', function () {
-    document.querySelector('.period-amount').textContent = periodSelector.value;
-});
-console.log(appData);
 
 
 
 
-//const events = new eventListeners; 
+
+AppData.eventListeners(); 
 //start.disabled = true;
