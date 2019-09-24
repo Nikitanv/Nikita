@@ -241,35 +241,7 @@ periodSelector.addEventListener('input', function () {
 console.log(appData);
 
 
-const DomElement = function(options,text){
-this.selector = options.selector;
-this.height = options.height ;
-this.width = options.width ;
-this.bg = options.bg ;
-this.fontSize = options.fontSize ;
-};
 
-DomElement.prototype.createElement = function(){
-console.log(this.selector[0]);
-if(this.selector[0] ==='.'){
-const div = document.createElement('div');
-div.style.cssText = 'height:' + this.height + ';width' + this.width + ';backgrount' +
-this.bg + ';font-size' + this.fontSize;
-div.textContent = this.text;
-document.body.appendChild(div);
-}
-};
-const optionS = {
-selector: '.round-blue',
-height:'100px',
-width:'100px',
-bg:'blue',
-fontSize:'16px'
-};
-
-const round = new DomElement(optionS);
-
-round.createElement();
 
 //const events = new eventListeners; 
 //start.disabled = true;
