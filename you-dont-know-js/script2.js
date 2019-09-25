@@ -11,7 +11,7 @@ const DomElement = function(options, text){
   
   DomElement.prototype.createElement = function(){
   console.log(this.selector[0]);
-  if(this.selector[0] ==='.'){
+  if(this.selector[0] ==='.', '#'){
   const div = document.createElement('div');
   div.style.cssText = 'height:' + this.height + ';width:' + this.width + ';background:' +
   this.bg + ';font-size:' + this.fontSize;
