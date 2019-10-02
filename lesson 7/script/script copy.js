@@ -28,9 +28,9 @@ let start = document.getElementById('start'),
     cancel = document.querySelector('#cancel'),
     depositBank = document.querySelector('.deposit-bank'),
     depositAmont = document.querySelector('.deposit-amount'),
-    depositParcent = document.querySelector('.deposit-percent'),
+    depositParcent = document.querySelector('.deposit-percent');
     // cls = document.querySelector('.calc'),
-    btn = document.getElementsByClassName('btn_plus');
+    //btn = document.getElementsByClassName('btn_plus');
 
 let appData = {
     income: {},
@@ -137,7 +137,7 @@ let appData = {
         cloneItem.querySelectorAll('input').forEach(function (item) {
             item.value = '';
         });
-        cloneItem.querySelectorAll('input').forEach(function (item) {
+        cloneItem.querySelectorAll('input').forEach(function () {
             elem[0].parentNode.insertBefore(cloneItem, btn);
             elem = document.querySelectorAll(className);
             if (elem.length >= 3) {
@@ -237,10 +237,12 @@ start.addEventListener('click', appData.start.bind(appData));
 //btn.addEventListener('click', appData.addBlock);
 
 expensesPlus.addEventListener('click', function () {
-    this.addBlock(expensesItems, '.expenses-items', expensesPlus);
+    appData.addBlock(expensesItems, '.expenses-items', expensesPlus);
 });
 incomePlus.addEventListener('click', function () {
-    this.addBlock(incomeItem, '.income-items', incomePlus);
+     console.log(this);
+    appData.addBlock(incomeItem, '.income-items', incomePlus);
+   
 });
 depositCheck.addEventListener('change', function () {
     if (depositCheck.checked === true) {
@@ -271,12 +273,6 @@ periodSelector.addEventListener('input', function () {
 });
 
 //start.disabled = true;
-
-
-
-
-
-
 
 
 
