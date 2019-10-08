@@ -1,6 +1,6 @@
 'use strict';
 
-let start = document.getElementById('start'),
+let startBtn = document.getElementById('start'),
     btnPlus = document.getElementsByTagName('button'),
     incomePlus = btnPlus[0],
     expensesPlus = btnPlus[1],
@@ -33,42 +33,41 @@ let start = document.getElementById('start'),
     btn = document.getElementsByClassName('btn_plus');
 
 class appData  {
-    constructor(income, addIncome, expenses, addExpenses, deposit, percentDeposit, moneyDeposit, period, budget,budgetDay,budgetMonth,ExpensesMonth,incomeMonth){
-         this.income = {},
-    this.addIncome = [],
-    this.expenses = {},
-    this.addExpenses = [],
-    this.deposit = false,
-    this.percentDeposit = 0,
-    this.moneyDeposit = 0,
-    this.period = 3,
-    this.budget = 0,
-    this.budgetDay = 0,
-    this.budgetMonth = 0,
-    this.ExpensesMonth = 0,
-    this.incomeMonth = 0;
-    
+    constructor(income = {}, addIncome = [], expenses = {}, addExpenses = [], deposit = false, percentDeposit = 0, moneyDeposit = 0, period = 3, budget = 0, budgetDay = 0, budgetMonth = 0, ExpensesMonth = 0, incomeMonth = 0){
+         this.income = income,
+    this.addIncome = addIncome,
+    this.expenses = expenses,
+    this.addExpenses = addExpenses,
+    this.deposit = deposit,
+    this.percentDeposit = percentDeposit,
+    this.moneyDeposit = moneyDeposit,
+    this.period = period,
+    this.budget = budget,
+    this.budgetDay = budgetDay,
+    this.budgetMonth = budgetMonth,
+    this.ExpensesMonth = ExpensesMonth,
+    this.incomeMonth = incomeMonth;
     }
    
     start () {
-
+console.log(this);
         salaryAmount.addEventListener('input', function () {
             if (salaryAmount.value.trim() === '') {
-                start.disabled = true;
+                startBtn.disabled = true;
             } else {
-                start.disabled = false;
+                startBtn.disabled = false;
             }
         });
         this.budget = +salaryAmount.value;
         this.getEpenses();
-        this.addBlock();
+        //this.addBlock();
         this.getIncome();
         this.getExpensesMounth();
-        // this.getAddExpenses();
+         this.getAddExpenses();
         this.getInfoDeposit();
-        // this.getAddincome();
-        this.getAdd(additionalExpensesItem);
-        this.getAdd(additionalIncomeItem);
+         this.getAddincome();
+       // this.getAdd(adds);
+        //this.getAdd(additionalIncomeItem);
         this.getBudget();
         this.showResult();
         this.block();
@@ -90,7 +89,7 @@ class appData  {
         data.querySelectorAll('input[type=text]').forEach(function (item) {
             item.disabled = true;
         });
-        start.style.display = 'none';
+        startBtn.style.display = 'none';
         cancel.style.display = 'block';
         cancel.addEventListener('click', this.reset);
     }
@@ -114,7 +113,7 @@ class appData  {
         data.querySelectorAll('input[type=text]').forEach(function (item) {
             item.value = '';
         });
-        start.style.display = 'block';
+        startBtn.style.display = 'block';
         cancel.style.display = 'none';
     }
     //     addExpensesBlock: function () {
@@ -171,34 +170,34 @@ class appData  {
             this.incomeMonth += +this.income[key];
         }
     }
-    // getAddExpenses: function () {
-    //     let addExpenses = additionalExpensesItem.value.split(',');
-    //     addExpenses.forEach(function (item) {
-    //         item = item.trim();
-    //         if (item !== '') {
-    //             this.addExpenses.push(item);
-    //         }
-    //     }, this);
-
-    // },
-    // getAddincome: function () {
-    //     additionalIncomeItem.forEach(function (item) {
-    //         let itemValue = item.value.trim();
-    //         if (itemValue !== '') {
-    //             this.addIncome.push(itemValue);
-    //         }
-    //     }, this);
-
-    // },
-    getAdd(adds){
-        let add = adds.value.split(',');
-        add.forEach(function (item) {
+    getAddExpenses () {
+        let addExpenses = additionalExpensesItem.value.split(',');
+        addExpenses.forEach( (item) => {
             item = item.trim();
             if (item !== '') {
-                this.add.push(item);
+                this.addExpenses.push(item);
             }
-        }, this);
+        });
+
     }
+    getAddincome () {
+        additionalIncomeItem.forEach( (item) => {
+            let itemValue = item.value.trim();
+            if (itemValue !== '') {
+                this.addIncome.push(itemValue);
+            }
+        });
+
+     }
+    // getAdd(adds){
+    //     let add = adds.value.split(',');
+    //     add.forEach( (item) => {
+    //         item = item.trim();
+    //         if (item !== '') {
+    //             this.add.push(item);
+    //         }
+    //     });
+    // }
 
     getExpensesMounth() {
         for (let key in this.expenses) {
@@ -235,52 +234,66 @@ class appData  {
             this.moneyDeposit = depositAmont.value;
         }
     }
-}
-const start1 = new appData();
-start.addEventListener('click', start1);
-//console.log(items);
-//btn.addEventListener('click', appData.addBlock);
-
-expensesPlus.addEventListener('click', function () {
+eventListeners (){
+    startBtn.addEventListener('click', ()=>{
+        this.start();
+    } );
+    expensesPlus.addEventListener('click', () => {
+        console.log(this);
     this.addBlock(expensesItems, '.expenses-items', expensesPlus);
-});
-incomePlus.addEventListener('click', function () {
+    
+ });
+    incomePlus.addEventListener('click',  () => {
     this.addBlock(incomeItem, '.income-items', incomePlus);
 });
-depositCheck.addEventListener('change', function () {
-    if (depositCheck.checked === true) {
-        depositBank.style.display = 'inline-block';
-        depositAmont.style.display = 'inline-block';
-        appData.deposit = 'true';
-        depositBank.addEventListener('change', function () {
-            let selectIndex = this.options[this.selectedIndex].value;
-            if (selectIndex === 'other') {
-                depositParcent.style.display = 'inline-block';
-                depositParcent.value = '';
-            } else {
-                depositParcent.style.display = 'none';
-                depositParcent.value = selectIndex;
-            }
-        });
-    } else {
-        depositBank.style.display = 'none';
-        depositAmont.style.display = 'none';
-        depositAmont.value = '';
-        appData.deposit = 'false';
-
+    periodSelector.addEventListener('input',  () => {
+        document.querySelector('.period-amount').textContent = periodSelector.value;
+    });
+    
+    
     }
-});
+    
+}
+const app = new appData();
+app.eventListeners();
+// //console.log(items);
+// //btn.addEventListener('click', appData.addBlock);
 
-periodSelector.addEventListener('input', function () {
-    document.querySelector('.period-amount').textContent = periodSelector.value;
-});
+
+
+// depositCheck.addEventListener('change', function () {
+//     if (depositCheck.checked === true) {
+//         depositBank.style.display = 'inline-block';
+//         depositAmont.style.display = 'inline-block';
+//         appData.deposit = 'true';
+//         depositBank.addEventListener('change', function () {
+//             let selectIndex = this.options[this.selectedIndex].value;
+//             if (selectIndex === 'other') {
+//                 depositParcent.style.display = 'inline-block';
+//                 depositParcent.value = '';
+//             } else {
+//                 depositParcent.style.display = 'none';
+//                 depositParcent.value = selectIndex;
+//             }
+//         });
+//     } else {
+//         depositBank.style.display = 'none';
+//         depositAmont.style.display = 'none';
+//         depositAmont.value = '';
+//         appData.deposit = 'false';
+
+//     }
+// });
+
+// periodSelector.addEventListener('input', function () {
+//     document.querySelector('.period-amount').textContent = periodSelector.value;
+// });
 
 //start.disabled = true;
 
  
 
-
-
+//const app = new appData();
 
 
 
