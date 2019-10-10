@@ -43,7 +43,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
   let idTimer = setInterval(countTimer, 1000, '1 octoder 2019');
 
-  //menu
+  //menu 
   const toggleMenu = () => {
     const btnMenu = document.querySelector('.menu'),
       menu = document.querySelector('menu'),
@@ -51,35 +51,53 @@ window.addEventListener('DOMContentLoaded', function () {
       menuItem = menu.querySelectorAll('ul>li');
 
     const handlerMenu = () => {
-     menu.classList.toggle('active-menu');
+      menu.classList.toggle('active-menu');
     };
-     closeBtn.addEventListener('click',handlerMenu);
-   
-       btnMenu.addEventListener('click',handlerMenu);
-    menuItem.forEach((elem)=> elem.addEventListener('click', handlerMenu));
+    closeBtn.addEventListener('click', handlerMenu);
+
+    btnMenu.addEventListener('click', handlerMenu);
+    menuItem.forEach((elem) => elem.addEventListener('click', handlerMenu));
   };
 
   toggleMenu();
 
-//popup
-const togglePopUp = () => {
-  const popup = document.querySelector('.popup'),
-  popupBtn = document.querySelectorAll('.popup-btn'),
-popUpClose = document.querySelector('.popup-close');
+  //popup
+  const togglePopUp = () => {
+    const popup = document.querySelector('.popup'),
+      popupBtn = document.querySelectorAll('.popup-btn'),
+      popUpClose = document.querySelector('.popup-close'),
+      poppup = document.querySelector('.popup-content');
 
-  popupBtn.forEach((elem) =>{
-    elem.addEventListener('click', () =>{
-      popup.style.display = 'block';
+    popupBtn.forEach((elem) => {
+      elem.addEventListener('click', () => {
+        popup.style.display = 'block';
+      });
     });
-  });
-  popUpClose.addEventListener('click', () =>{
-    popup.style.display = 'none';
-  });
-};
-togglePopUp();
+    popUpClose.addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+    let start = Date.now(); // запомнить время начала
 
 
+    poppup.onclick = function () {
+      let start = Date.now();
 
+      let timer = setInterval(function () {
+        let timePassed = Date.now() - start;
+
+        poppup.style.left = timePassed / 5 + 'px';
+
+        if (timePassed > 2000) {
+          clearInterval(timer);
+
+        }
+
+      }, 20);
+    };
+
+  };
+
+  togglePopUp();
 
 
 
